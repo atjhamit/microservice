@@ -1,0 +1,9 @@
+services:
+    web:
+        image: "mmumshad/simple-webapp"
+    database:
+        image: "mongodb"
+    messaging:
+        image: "redis:alpine"
+    orchestration:
+        image: "ansible"
