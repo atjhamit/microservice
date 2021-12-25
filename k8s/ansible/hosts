@@ -1,0 +1,15 @@
+[kubernetes-master-nodes]
+kube-master ansible_host=kmaster.ccu.is.keysight.com
+
+[kubernetes-worker-nodes]
+kube-worker-1 ansible_host=kworker.ccu.is.keysight.com
+
+[kubernetes:children]
+kubernetes-worker-nodes
+kubernetes-master-nodes
+
+[kubernetes:vars]
+ansible_password=officeCR12@#
+ansible_ssh_user=root
+
+

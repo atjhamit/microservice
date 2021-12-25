@@ -1,0 +1,32 @@
+---
+- hosts: kubernetes-master-nodes
+  become: yes
+  vars_files:
+  - env_variables
+  tasks:
+  - name: Pulling images required for setting up a Kubernetes cluster
+    shell: kubeadm config images pull
+
+  - name: Resetting kubeadm
+    shell: kubeadm reset -f
+    register: output
+
+  - name: Initializing Kubernetes cluster
+    shell: kubeadm init --pod-network-cidr={{ cidr_v }}
+    register: output
+
+  - name: Storing Logs and Generated token for future purpose.
+    local_action: copy content={{ output.stdout }} dest={{ token_file }}
+    become: False 
+
+  - name: Copying required files
+    shell: |
+     mkdir -p $HOME/.kube
+     cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
+     chown $(id -u):$(id -g) $HOME/.kube/config
+
+  - name: Install Network Add-on
+    command: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+  - name: Taint the master node
+    command: kubectl taint nodes --all node-role.kubernetes.io/master-

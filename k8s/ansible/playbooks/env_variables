@@ -1,0 +1,23 @@
+ad_addr: 10.39.35.81 
+cidr_v: 10.244.0.0/16
+
+packages:
+- kubeadm
+- kubectl
+
+services:
+- docker
+- kubelet
+- firewalld
+
+ports:
+- "6443/tcp"
+- "2379-2380/tcp"
+- "10250/tcp"
+- "10250/tcp"
+- "10251/tcp"
+- "10252/tcp"
+- "8285/udp"
+- "8472/udp"
+
+token_file: join_token
