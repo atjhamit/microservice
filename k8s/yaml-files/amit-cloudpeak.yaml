@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: cloudpeak
+spec:
+  replicas: 1
+  selector:
+    app: cloudpeak
+  template:
+    metadata:
+      name: cloudpeak
+      labels:
+        app: cloudpeak
+    spec:
+      volumes: [{'name': 'kernel-volume', 'hostPath': {'path': '/sys/kernel/debug'}}]
+      containers:
+      - name: cloudpeak
+        volumeMounts: [{'name': 'kernel-volume', 'mountPath': '/sys/kernel/debug'}]
+        image: cp-private-reg:5000/cloudpeak_kubernetes:3.20.0.30
+        imagePullPolicy: IfNotPresent
+        command: [/bin/bash]
+        args: ['-c', 'while true ; do sleep 10000; done']
+
