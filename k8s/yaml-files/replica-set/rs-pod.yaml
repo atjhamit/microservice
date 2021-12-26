@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-            name: replica-set-pod
+            name: just-pod-1
             labels:
                 pod-label: pod-label-value
                 specific: specific-value
