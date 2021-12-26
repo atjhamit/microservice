@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+    name: replica-set
+    labels:
+        type: front-end
+        app-name: amit-app
+spec:
+    template:
+        metadata:
+            name: replica-set-pod
+            labels:
+                pod-label: pod-label-value
+                specific: specific-value
+        spec:
+            containers:
+                - name: replica-set-container
+                  image: nginx
+    replicas: 4
+    selector:
+        matchLabels:
+            specific: specific-value
+
+# to update on doing modifications to the yaml file 
+#   kubectl replace -f replica-set.yaml
+#   kubectl apply -f replica-set.yaml
