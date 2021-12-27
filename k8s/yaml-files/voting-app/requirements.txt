@@ -1,0 +1,24 @@
+Steps:
+
+1. Deploy pods
+2. Create Service (ClusterIP)
+    - redis
+    - db
+3. Create Service (NodePort)
+    - voting-app
+    - result-app
+
+Container/Pod/Service details:
+voting-app -> frontend for taking votes from user -> image=kodekloud/examplevotingapp_vote:v1
+result-app -> frontend for display result to user -> image=kodekloud/examplevotingapp_result:v1
+redis -> in memory db -> image=redis
+postgresql -> persistent db -> image=postgresql
+worker -> no service required -> reads from redis and updates postgresql -> image=kodekloud/examplevotingapp_worker:v1
+
+Extra:
+    username: postgres password: postgres for postgresql db
+
+////
+command to run all the yamls at once: 
+
+kubectl create -f voting-app-pod.yaml; kubectl create -f voting-app-service.yaml; kubectl create -f redis-pod.yaml; kubectl create -f redis-service.yaml; kubectl create -f postgres-pod.yaml; kubectl create -f postgres-service.yaml; kubectl create -f worker-app-pod.yaml; kubectl create -f result-app-pod.yaml; kubectl create -f result-app-service.yaml
