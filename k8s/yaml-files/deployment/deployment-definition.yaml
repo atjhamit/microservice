@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: my-deployment
+    labels:
+        type: deploy
+        environment: front-end
+spec:
+    template:
+        metadata:
+            name: my-pod
+            labels:
+                type-a: deploy-pod-a
+                type-b: deploy-pod-b
+        spec:
+            containers:
+              - name: deploy-cont 
+                image: nginx
+    replicas: 3
+    selector:
+        matchLabels:
+            type-a: deploy-pod-a
+            type-b: deploy-pod-b
