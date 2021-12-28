@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
     name: replica-set
     labels:
@@ -19,6 +19,7 @@ spec:
     replicas: 4
     selector:
         matchLabels:
+            pod-label: pod-label-value
             specific: specific-value
 
 # to update on doing modifications to the yaml file 
