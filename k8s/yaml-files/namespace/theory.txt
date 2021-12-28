@@ -1,0 +1,19 @@
+
+
+mysql.connect("db-service")
+if in the default namespace
+
+otherwise
+mysql.connect("db-service.dev.svc.cluster.local")
+
+
+db-service -> service name
+dev -> namespace
+svc -> service
+domain -> cluster.local
+
+--to change the namespace to amit--
+kubectl config set-context $(kubectl config current-context) --namespace=amit
+
+--to get current context--
+kubectl config current-context
