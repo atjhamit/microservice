@@ -15,9 +15,13 @@ spec:
         spec:
             containers:
               - name: deploy-cont 
-                image: nginx
+                image: nginx:1.7.1
     replicas: 3
     selector:
         matchLabels:
             type-a: deploy-pod-a
             type-b: deploy-pod-b
+    strategy:
+        type: Recreate
+
+# spec.strategy.type: RollingUpdate is the default
