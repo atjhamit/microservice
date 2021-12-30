@@ -26,6 +26,7 @@ Generate Deployment with 4 replicas
 
 
 Create a Service named nginx of type NodePort to expose pod nginx’s port 80 on port 30080 on the nodes:
+
     kubectl expose pod nginx --port=80 --name nginx-service --type=NodePort --dry-run=client -o yaml
 
     (This will automatically use the pod’s labels as selectors, but you cannot specify the node port. You have to generate a definition file and then add the node port in manually before creating the service with the pod.)  
