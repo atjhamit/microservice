@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: env-variable-pod
+    labels:
+        type: pod
+
+spec:
+    containers:
+      - name: ubuntu-sleeper
+        image: ubuntu
+        command: ["sleep"] # ENTRYPOINT -> command
+        args: ["10"]    # CMD -> args
+        env:
+          - name: ABCD
+            value: abcd
