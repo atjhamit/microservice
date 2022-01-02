@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: my-config-map
+data:
+    FIRST: amit
+    MIDDLE: kumar
+    LAST: jha
+
+# to create from command line itself
+# kubectl create configmap my-config --from-literal=FIRST_NAME=amit --from-literal=LAST_NAME=jha
