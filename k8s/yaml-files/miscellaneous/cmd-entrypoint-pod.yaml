@@ -9,5 +9,5 @@ spec:
     containers:
       - name: ubuntu-sleeper
         image: ubuntu
-        command: ["sleep"]
-        args: ["10"]
+        command: ["sleep"] # ENTRYPOINT -> command
+        args: ["10"]    # CMD -> args
