@@ -1,0 +1,4 @@
+kubectl explain pods --recursive | grep envFrom -A3
+
+it will show the syntax for envFrom
+-A3 means 3 more lines below envFrom grep
